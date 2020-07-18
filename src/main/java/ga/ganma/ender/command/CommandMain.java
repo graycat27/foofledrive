@@ -1,17 +1,14 @@
 package ga.ganma.ender.command;
 
 import ga.ganma.ender.Filerelation;
-import ga.ganma.ender.Plan;
+import ga.ganma.ender.plan;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.logging.Level;
 
 public class CommandMain implements CommandExecutor {
@@ -44,18 +41,18 @@ public class CommandMain implements CommandExecutor {
 		} else if (args[0].equalsIgnoreCase("plan")) {
 			if(args.length == 1){	//入力不足
 				p.sendMessage("[foofle drive]プラン名を入力してください。");
-				p.sendMessage("[foofle drive]" + Plan.getPlanNameList());
+				p.sendMessage("[foofle drive]" + plan.getPlanNameList());
 				return false;
 			}
 
-			Plan inputPlan = Plan.getPlan(args[1]);
+			plan inputPlan = plan.getPlan(args[1]);
 			if(inputPlan == null){	//入力値無効
 				p.sendMessage("[foofle drive]「"+ args[1] +"」は無効なプラン名です。");
-				p.sendMessage("[foofle drive] 有効なプラン名を入力してください。" + Plan.getPlanNameList());
+				p.sendMessage("[foofle drive] 有効なプラン名を入力してください。" + plan.getPlanNameList());
 			}
 
 			new Subplan(this.pl, p, inputPlan);
-			if(inputPlan == Plan.LIGHT){
+			if(inputPlan == plan.LIGHT){
 				Filerelation.readFile(p).setFinish(Calendar.getInstance());
 			}
 		}

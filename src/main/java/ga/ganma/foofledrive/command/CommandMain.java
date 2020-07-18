@@ -3,7 +3,7 @@ package ga.ganma.foofledrive.command;
 import ga.ganma.foofledrive.Filerelation;
 import ga.ganma.foofledrive.Foofledrive;
 import ga.ganma.foofledrive.economy.Economy;
-import ga.ganma.foofledrive.Plan;
+import ga.ganma.foofledrive.plan;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -97,15 +97,15 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 				//プラン選択GUI表示
 				showPlanSelect(p);
 			} else {
-				Plan plan = Plan.getPlan(args[1]);
+				plan plan = ga.ganma.foofledrive.plan.getPlan(args[1]);
 				if(plan == null){
 					sendFoofleDriveMessage(p, " 「"+ args[1] +"」は無効なプラン名です。");
-					sendFoofleDriveMessage(p, "有効なプラン名を入力してください。" + Plan.getPlanNameList());
+					sendFoofleDriveMessage(p, "有効なプラン名を入力してください。" + ga.ganma.foofledrive.plan.getPlanNameList());
 					return false;
 				}
 
 				new Subplan(this.pl, p, plan);
-				if(plan == Plan.LIGHT){
+				if(plan == ga.ganma.foofledrive.plan.LIGHT){
 					Filerelation.readFile(p).setFinish(Calendar.getInstance());
 				}
 			}
@@ -147,7 +147,7 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 		ItemMeta im1 = free.getItemMeta();
 		im1.setDisplayName("FREEプラン");
 		List<String> freePrice = new ArrayList<>();
-		freePrice.add(Economy.getPlanPrice(Plan.FREE) + Foofledrive.unit);
+		freePrice.add(Economy.getPlanPrice(plan.FREE) + Foofledrive.unit);
 		im1.setLore(freePrice);
 		free.setItemMeta(im1);
 
@@ -155,7 +155,7 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 		ItemMeta im2 = light.getItemMeta();
 		im2.setDisplayName("LIGHTプラン");
 		List<String> lightPrice = new ArrayList<>();
-		lightPrice.add(Economy.getPlanPrice(Plan.LIGHT) + Foofledrive.unit);
+		lightPrice.add(Economy.getPlanPrice(plan.LIGHT) + Foofledrive.unit);
 		im2.setLore(lightPrice);
 		light.setItemMeta(im2);
 
@@ -163,7 +163,7 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 		ItemMeta im3 = middle.getItemMeta();
 		im3.setDisplayName("MIDDLEプラン");
 		List<String> middlePrice = new ArrayList<>();
-		middlePrice.add(Economy.getPlanPrice(Plan.MIDDLE) + Foofledrive.unit);
+		middlePrice.add(Economy.getPlanPrice(plan.MIDDLE) + Foofledrive.unit);
 		im3.setLore(middlePrice);
 		middle.setItemMeta(im3);
 
@@ -171,7 +171,7 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 		ItemMeta im4 = middle.getItemMeta();
 		im4.setDisplayName("LARGEプラン");
 		List<String> largePrice = new ArrayList<>();
-		largePrice.add(Economy.getPlanPrice(Plan.LARGE) + Foofledrive.unit);
+		largePrice.add(Economy.getPlanPrice(plan.LARGE) + Foofledrive.unit);
 		im4.setLore(largePrice);
 		large.setItemMeta(im4);
 
@@ -244,7 +244,7 @@ public class CommandMain implements CommandExecutor, TabCompleter {
 			if(args[0].equals(firstCommandList.get(1))){
 				//「/fl plan xx」状態
 				List<String> resultList = new ArrayList<String>();
-				for (Plan pln : Plan.values()) {	//planはenum
+				for (plan pln : plan.values()) {	//planはenum
 					if(args[1].equals("") || 
 					   pln.toString().toLowerCase().startsWith(args[1].toLowerCase())){
 						//xx部分未入力or入力内容に合致する候補

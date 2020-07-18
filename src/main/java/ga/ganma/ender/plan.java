@@ -2,7 +2,8 @@ package ga.ganma.ender;
 
 import java.io.Serializable;
 
-public enum Plan implements Serializable {
+/** データファイルの後方互換のため、標準命名規則に反するが小文字のplanのままにする */
+public enum plan implements Serializable {
 	FREE,LIGHT,MIDDLE,LARGE;
 
 	/**
@@ -14,7 +15,7 @@ public enum Plan implements Serializable {
 		if(arg == null || arg.isEmpty()){
 			return false;
 		}
-		for(Plan p: Plan.values()){
+		for(plan p: plan.values()){
 			if(arg.equalsIgnoreCase(p.name())){
 				return true;
 			}
@@ -27,9 +28,9 @@ public enum Plan implements Serializable {
 	 * @param arg 取得したいPlan名
 	 * @return 有効なPlan名の場合、対応するPlan。対応しない場合は<code>null</code>
 	 */
-	public static Plan getPlan(String arg){
+	public static plan getPlan(String arg){
 		if(isPlanName(arg)){
-			for(Plan p : Plan.values()){
+			for(plan p : plan.values()){
 				if(p.name().equalsIgnoreCase(arg)){
 					return p;
 				}
@@ -44,7 +45,7 @@ public enum Plan implements Serializable {
 	 */
 	public static String getPlanNameList(){
 		StringBuilder sb = new StringBuilder();
-		for(Plan p : Plan.values()){
+		for(plan p : plan.values()){
 			if(sb.length() != 0){
 				sb.append(',');
 			}

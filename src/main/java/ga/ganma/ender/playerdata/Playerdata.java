@@ -1,7 +1,6 @@
 package ga.ganma.ender.playerdata;
 
 import ga.ganma.ender.inventoryRelation.InventoryEncoder;
-import ga.ganma.ender.Plan;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
@@ -11,17 +10,17 @@ import java.util.UUID;
 
 public class Playerdata implements Serializable {
 	private UUID mcid;
-	private Plan plan;
+	private ga.ganma.ender.plan plan;
 	private String inventorySt;
 	private Calendar finish;
 
-	public Playerdata(Player pl, Inventory inv, Plan plan) {
+	public Playerdata(Player pl, Inventory inv, ga.ganma.ender.plan plan) {
 		this.mcid = pl.getUniqueId();
 		this.plan = plan;
 		this.inventorySt = InventoryEncoder.inventoryToString(inv);
 	}
 
-	public Plan getPlan() {
+	public ga.ganma.ender.plan getPlan() {
 		return plan;
 	}
 

@@ -3,7 +3,7 @@ package ga.ganma.foofledrive.inventoryRelation;
 import ga.ganma.foofledrive.Filerelation;
 import ga.ganma.foofledrive.Foofledrive;
 import ga.ganma.foofledrive.economy.Economy;
-import ga.ganma.foofledrive.Plan;
+import ga.ganma.foofledrive.plan;
 import ga.ganma.foofledrive.playerdata.Playerdata;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -23,7 +23,7 @@ public class InventoryAPI {
 		return inv;
 	}
 
-	public static boolean planchange(Player player, Plan plan){
+	public static boolean planchange(Player player, plan plan){
 		Inventory inv = null;
 		ItemStack[] is = null;
 		switch (plan){
@@ -97,7 +97,7 @@ public class InventoryAPI {
 		return false;
 	}
 
-	public static void planchange(OfflinePlayer player, Plan plan){
+	public static void planchange(OfflinePlayer player, plan plan){
 		Inventory inv = null;
 		ItemStack[] is = null;
 		switch (plan){

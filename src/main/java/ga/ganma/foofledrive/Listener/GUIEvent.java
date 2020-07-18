@@ -3,7 +3,7 @@ package ga.ganma.foofledrive.Listener;
 import ga.ganma.foofledrive.Filerelation;
 import ga.ganma.foofledrive.command.CommandMain;
 import ga.ganma.foofledrive.inventoryRelation.InventoryAPI;
-import ga.ganma.foofledrive.Plan;
+import ga.ganma.foofledrive.plan;
 import ga.ganma.foofledrive.playerdata.Playerdata;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class GUIEvent implements Listener {
 
-	private static HashMap<Player, Plan> ProvisionalPlan = new HashMap<>();
+	private static HashMap<Player, plan> ProvisionalPlan = new HashMap<>();
 
 	public GUIEvent(Plugin pl) {
 		Bukkit.getPluginManager().registerEvents(this, pl);
@@ -46,19 +46,19 @@ public class GUIEvent implements Listener {
 						if (e.getSlot() == 10) {
 							e.setCancelled(true);
 							pl.openInventory(yesornoInv());
-							ProvisionalPlan.put(pl, Plan.FREE);
+							ProvisionalPlan.put(pl, plan.FREE);
 						} else if (e.getSlot() == 12) {
 							e.setCancelled(true);
 							pl.openInventory(yesornoInv());
-							ProvisionalPlan.put(pl, Plan.LIGHT);
+							ProvisionalPlan.put(pl, plan.LIGHT);
 						} else if (e.getSlot() == 14) {
 							e.setCancelled(true);
 							pl.openInventory(yesornoInv());
-							ProvisionalPlan.put(pl, Plan.MIDDLE);
+							ProvisionalPlan.put(pl, plan.MIDDLE);
 						} else if (e.getSlot() == 16) {
 							e.setCancelled(true);
 							pl.openInventory(yesornoInv());
-							ProvisionalPlan.put(pl, Plan.LARGE);
+							ProvisionalPlan.put(pl, plan.LARGE);
 						} else if (clickedItem.getType() == Material.LIGHT_GRAY_STAINED_GLASS_PANE) {
 							e.setCancelled(true);
 						}
@@ -68,48 +68,48 @@ public class GUIEvent implements Listener {
 							Playerdata pd;
 							switch (ProvisionalPlan.get(pl)) {
 								case FREE:
-									InventoryAPI.planchange(pl, Plan.FREE);
+									InventoryAPI.planchange(pl, plan.FREE);
 									pd = Filerelation.readFile(pl);
 									if (pd.getFinish() == null) {
 										pd.setFinish(Calendar.getInstance());
 										Filerelation.createFile(pd);
 									}
-									pl.sendMessage("[foofle drive]プランを" + Plan.FREE + "プランに変更しました。");
+									pl.sendMessage("[foofle drive]プランを" + plan.FREE + "プランに変更しました。");
 									break;
 
 								case LIGHT:
-									boolean is = InventoryAPI.planchange(pl, Plan.LIGHT);
+									boolean is = InventoryAPI.planchange(pl, plan.LIGHT);
 									pd = Filerelation.readFile(pl);
 									if (pd.getFinish() == null) {
 										pd.setFinish(Calendar.getInstance());
 										Filerelation.createFile(pd);
 									}
 									if (is) {
-										pl.sendMessage("[foofle drive]プランを" + Plan.LIGHT + "プランに変更しました。");
+										pl.sendMessage("[foofle drive]プランを" + plan.LIGHT + "プランに変更しました。");
 									}
 									break;
 
 								case MIDDLE:
-									boolean is1 = InventoryAPI.planchange(pl, Plan.MIDDLE);
+									boolean is1 = InventoryAPI.planchange(pl, plan.MIDDLE);
 									pd = Filerelation.readFile(pl);
 									if (pd.getFinish() == null) {
 										pd.setFinish(Calendar.getInstance());
 										Filerelation.createFile(pd);
 									}
 									if (is1) {
-										pl.sendMessage("[foofle drive]プランを" + Plan.MIDDLE + "プランに変更しました。");
+										pl.sendMessage("[foofle drive]プランを" + plan.MIDDLE + "プランに変更しました。");
 									}
 									break;
 
 								case LARGE:
-									boolean is2 = InventoryAPI.planchange(pl, Plan.LARGE);
+									boolean is2 = InventoryAPI.planchange(pl, plan.LARGE);
 									pd = Filerelation.readFile(pl);
 									if (pd.getFinish() == null) {
 										pd.setFinish(Calendar.getInstance());
 										Filerelation.createFile(pd);
 									}
 									if (is2) {
-										pl.sendMessage("[foofle drive]プランを" + Plan.LARGE + "プランに変更しました。");
+										pl.sendMessage("[foofle drive]プランを" + plan.LARGE + "プランに変更しました。");
 									}
 									break;
 							}
